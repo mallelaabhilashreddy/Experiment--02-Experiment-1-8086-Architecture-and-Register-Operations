@@ -1,4 +1,4 @@
-# Experiment--02-Experiment-1-8086-Architecture-and-Register-Operations
+# Experiment--2-Experiment-1-8086-Architecture-and-Register-Operations
  
 ## Aim
 
@@ -139,6 +139,8 @@ END MAIN
 -   AX = `1234H`
 -   BX = `1234H`
 -   RESULT = `1234H`
+-   <img width="1302" height="685" alt="image" src="https://github.com/user-attachments/assets/21763e3c-fa38-45cb-9721-89d4442d11fa" />
+
 
 ### Explanation
 
@@ -146,6 +148,7 @@ END MAIN
 AX. `MOV RESULT, BX` stores the contents of BX in the 16-bit memory
 variable `RESULT`. The `MOV` instruction does not modify the source
 operand.
+
 
 ------------------------------------------------------------------------
 
@@ -165,7 +168,25 @@ Write an 8086 assembly language program to exchange the contents of two
 5.  Stop the program.
 
 ### Assembly Program
+.MODEL SMALL
+.STACK 100H
 
+.DATA
+    VALUE1 DW 1111H
+    VALUE2 DW 2222H
+
+.CODE
+    MOV AX, @DATA
+    MOV DS, AX
+
+    MOV AX, VALUE1      ; AX = 1111H
+    MOV BX, VALUE2      ; BX = 2222H
+    MOV VALUE1, BX      ; VALUE1 = 2222H
+    MOV VALUE2, AX      ; VALUE2 = 1111H
+
+    MOV AH, 4CH
+    INT 21H
+END
  
 
 ### Expected Result
@@ -176,6 +197,9 @@ Write an 8086 assembly language program to exchange the contents of two
   VALUE2                       `2222H`           `1111H`
 
 ### Explanation
+This program exchanges the contents of two 16-bit memory locations, VALUE1 and VALUE2, using the AX and BX registers as temporary storage.
+
+Why registers are needed: The 8086 does not allow a MOV directly from one memory location to another. The values must first be loaded into registers, and then written back to the opposite locations.
 
   
 ------------------------------------------------------------------------
@@ -191,9 +215,8 @@ Write an 8086 assembly language program to exchange the contents of two
 7.  Record the observed results and compare them with the expected
     results.
 ## Screenshot of the results 
-<img width="1600" height="833" alt="COA3" src="https://github.com/user-attachments/assets/d9c2dad8-df36-4584-a3ab-3bfff1dabee9" />
-<img width="1600" height="836" alt="COA2" src="https://github.com/user-attachments/assets/cba788dc-2f94-4334-86fb-4b73970be1f3" />
-<img width="1600" height="831" alt="coA1" src="https://github.com/user-attachments/assets/d963a6a6-c48b-44dd-a31b-cb70605d6378" />
+<img width="1314" height="687" alt="image" src="https://github.com/user-attachments/assets/170bffaa-6f20-4861-b503-75698b3f3660" />
+
 
 
 
@@ -214,40 +237,6 @@ storage and the exchange of two 16-bit memory values.
 6.  Does the `MOV` instruction change the source operand?
 7.  Why are registers used when exchanging two memory values?
 8.  What is the purpose of the DS segment register?
-1.1. What is the function of the BIU in the 8086?
 
-Answer: BIU (Bus Interface Unit) fetches instructions from memory, reads and writes data, and handles address calculations. It also stores prefetched instructions in the instruction queue.
-
-2. What is the role of the EU?
-
-Answer: EU (Execution Unit) decodes and executes instructions. It performs arithmetic and logical operations using the ALU and registers.
-
-3. Why does the 8086 use a 6-byte instruction queue?
-
-Answer: The 8086 uses a 6-byte instruction queue to prefetch instructions while the EU is executing the current instructions. This increases processing speed.
-
-4. What is the maximum physical memory address space of the 8086?
-
-Answer: The 8086 has a 20-bit address bus, so it can access a maximum of 1 MB (2²⁰ = 1,048,576 bytes) of memory.
-
-5. What is the difference between a register and a memory variable?
-
-Answer:
-
-Register: A small, fast storage location inside the CPU.
-
-Memory variable: A data storage location in main memory (RAM), accessed using a memory address.
-
-6. Does the MOV instruction change the source operand?
-
-Answer: No. The MOV instruction copies data from the source operand to the destination operand without changing the source.
-
-7. Why are registers used when exchanging two memory values?
-
-Answer: Registers are used as temporary storage because the 8086 does not allow direct memory-to-memory data transfer using a single MOV instruction.
-
-8. What is the purpose of the DS segment register?
-
-Answer: DS (Data Segment) register stores the starting address of the data segment. It is used to access data stored in memory.
  
 ` 
