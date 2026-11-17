@@ -214,6 +214,40 @@ storage and the exchange of two 16-bit memory values.
 6.  Does the `MOV` instruction change the source operand?
 7.  Why are registers used when exchanging two memory values?
 8.  What is the purpose of the DS segment register?
+1.1. What is the function of the BIU in the 8086?
 
+Answer: BIU (Bus Interface Unit) fetches instructions from memory, reads and writes data, and handles address calculations. It also stores prefetched instructions in the instruction queue.
+
+2. What is the role of the EU?
+
+Answer: EU (Execution Unit) decodes and executes instructions. It performs arithmetic and logical operations using the ALU and registers.
+
+3. Why does the 8086 use a 6-byte instruction queue?
+
+Answer: The 8086 uses a 6-byte instruction queue to prefetch instructions while the EU is executing the current instructions. This increases processing speed.
+
+4. What is the maximum physical memory address space of the 8086?
+
+Answer: The 8086 has a 20-bit address bus, so it can access a maximum of 1 MB (2²⁰ = 1,048,576 bytes) of memory.
+
+5. What is the difference between a register and a memory variable?
+
+Answer:
+
+Register: A small, fast storage location inside the CPU.
+
+Memory variable: A data storage location in main memory (RAM), accessed using a memory address.
+
+6. Does the MOV instruction change the source operand?
+
+Answer: No. The MOV instruction copies data from the source operand to the destination operand without changing the source.
+
+7. Why are registers used when exchanging two memory values?
+
+Answer: Registers are used as temporary storage because the 8086 does not allow direct memory-to-memory data transfer using a single MOV instruction.
+
+8. What is the purpose of the DS segment register?
+
+Answer: DS (Data Segment) register stores the starting address of the data segment. It is used to access data stored in memory.
  
 ` 
